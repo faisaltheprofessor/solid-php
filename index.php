@@ -108,7 +108,8 @@ class ProductSalesPerViewSorter implements SorterInterface
 }
 
 
-class ProductSalesCountSorter implements SorterInterface {
+class ProductSalesCountSorter implements SorterInterface
+{
     protected bool $desc;
 
     public function __construct(bool $desc = false)
@@ -118,29 +119,30 @@ class ProductSalesCountSorter implements SorterInterface {
 
     public function sort(array $products): array
     {
-       usort($products, function($product1, $product2){
-           return !$this->desc ?  $product1['sales_count'] <=> $product2['sales_count'] :  $product2['sales_count'] <=> $product1['sales_count'] ;
-       });
+        usort($products, function ($product1, $product2) {
+            return !$this->desc ? $product1['sales_count'] <=> $product2['sales_count'] : $product2['sales_count'] <=> $product1['sales_count'];
+        });
 
-       return $products;
+        return $products;
     }
 }
 
 
-class ProductCreatedAtSorter implements SorterInterface {
+class ProductCreatedAtSorter implements SorterInterface
+{
 
     public function sort(array $products): array
     {
-        usort($products, function($product1, $product2) {
-            return date('Y-m-d', strtotime( $product1['created'])) <=> date('Y-m-d', strtotime($product2['created']));
-        } );
+        usort($products, function ($product1, $product2) {
+            return date('Y-m-d', strtotime($product1['created'])) <=> date('Y-m-d', strtotime($product2['created']));
+        });
         return $products;
     }
 }
 
 /**
  * a helper function to display associative array
- * @param array  $array
+ * @param array $array
  * @return void
  */
 function displayArray(array $array): void
